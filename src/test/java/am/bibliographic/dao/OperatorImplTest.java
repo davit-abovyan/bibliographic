@@ -42,7 +42,7 @@ public class OperatorImplTest extends BaseIntegrationTest {
     public void getAll_success(){
         OperatorEntity otherOperator = new OperatorEntity("Jone",false);
         operatorImpl.create(otherOperator);
-        autoDelete.push(new Pair<>(operatorImpl, operator));
+        autoDelete.push(new Pair<>(operatorImpl, otherOperator));
         assertEquals("The full list of operators is not returned", 2, operatorImpl.getAll().size());
     }
 
