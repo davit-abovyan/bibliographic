@@ -108,4 +108,17 @@ public class StatisticsImpl extends NamedParameterJdbcDaoSupport implements Stat
             return ps;
         });
     }
+
+    /**
+     * @see Statistics#remove(int)
+     */
+    @Override
+    public void remove(int journalId) {
+        final String query = "DELETE FROM statistics WHERE journal_id = ? ";
+        getJdbcTemplate().update( connection -> {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, journalId);
+            return ps;
+        });
+    }
 }

@@ -41,4 +41,10 @@ public interface BohJournal extends BaseDAO{
      * @param entity the entity that should be removed
      */
     public void remove(Entity entity);
+
+    /**
+     * Removes the record from boh_journal table
+     * @param journalId the id of journal all BOHs related to which should be removed
+     */
+    public void removeByJournal(int journalId);
 }

@@ -19,6 +19,10 @@ public class StatisticsEntity implements Entity{
     public StatisticsEntity() {
     }
 
+    public StatisticsEntity(int journalId) {
+        this.journalId = journalId;
+    }
+
     public StatisticsEntity(int journalId, int IF_2010, int IF_2011, int IF_2012, int IF_2013, int IF_2014, int IF_2015, int nIssueElib,
                             int nIssueAINC, int nArticleElib, int nArticleAINC, int nReferenceAINC, int nCitationAINC,
                             int nSelfciteAINC) {

@@ -81,4 +81,17 @@ public class BohJournalImpl extends NamedParameterJdbcDaoSupport implements BohJ
             return ps;
         });
     }
+
+    /**
+     * @see BohJournal#removeByJournal(int)
+     */
+    @Override
+    public void removeByJournal(int journalId) {
+        final String query = "DELETE FROM boh_journal WHERE journal_id = ?";
+        getJdbcTemplate().update( connection -> {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, journalId);
+            return ps;
+        });
+    }
 }
