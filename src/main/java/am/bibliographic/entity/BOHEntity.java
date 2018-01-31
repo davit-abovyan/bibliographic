@@ -1,6 +1,6 @@
 package am.bibliographic.entity;
 
-public class BOHEntity implements Entity{
+public class BOHEntity implements IdEntity{
     private int id;
     private String name;
 

@@ -34,12 +34,6 @@ public interface Statistics extends BaseDAO {
 
     /**
      * Removes the record from statistics table
-     * @param entity the entity to be removed
-     */
-    public void remove(Entity entity);
-
-    /**
-     * Removes the record from statistics table
      * @param journalId the id of journal which related entity should be removed
      */
     public void remove(int journalId);

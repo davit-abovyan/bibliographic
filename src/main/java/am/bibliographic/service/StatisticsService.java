@@ -5,9 +5,11 @@ import am.bibliographic.entity.StatisticsEntity;
 import am.bibliographic.exception.ServiceException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class StatisticsService extends BaseService {
     private Logger log = Logger.getLogger(StatisticsService.class);
     private Statistics statistics;

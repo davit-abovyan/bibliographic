@@ -68,7 +68,7 @@ public class JournalImplTest extends BaseIntegrationTest {
         try{
             doAutoDelete();
         } catch (Exception e){
-            fail("Entity removal failed in Person test. Detail: "+e.getMessage());
+            fail("Entity removal. Detail: "+e.getMessage());
         }
     }
 

@@ -1,14 +1,10 @@
 package am.bibliographic.dao;
 
 import am.bibliographic.BaseIntegrationTest;
-import am.bibliographic.constants.Country;
-import am.bibliographic.dao.impl.*;
 import am.bibliographic.entity.*;
-import am.bibliographic.util.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DuplicateKeyException;
 
 import static org.junit.Assert.assertEquals;
@@ -38,14 +34,14 @@ public class StatisticsImplTest extends BaseIntegrationTest {
         try{
             doAutoDelete();
         } catch (Exception e){
-            fail("Entity removal failed in Person test. Detail: "+e.getMessage());
+            fail("Entity removal failed. Detail: "+e.getMessage());
         }
     }
 
     @Test
     public void createAndGet_success(){
-        assertEquals("Statistics entity is not created", statistics.getJournalId(),
-                statisticsImpl.read(statistics.getJournalId()).getJournalId());
+        assertEquals("Statistics entity is not created", statistics.getId(),
+                statisticsImpl.read(statistics.getId()).getId());
     }
 
     @Test(expected = DuplicateKeyException.class)
@@ -77,7 +73,7 @@ public class StatisticsImplTest extends BaseIntegrationTest {
                 .setnCitationAINC(0)
                 .setnSelfciteAINC(0);
         statisticsImpl.update(statistics);
-        statistics = statisticsImpl.read(statistics.getJournalId());
+        statistics = statisticsImpl.read(statistics.getId());
         assertEquals("Statistics IF_2010 field is not updated", 0, statistics.getIF_2010());
         assertEquals("Statistics IF_2011 field is not updated", 0, statistics.getIF_2011());
         assertEquals("Statistics IF_2012 field is not updated", 0, statistics.getIF_2012());

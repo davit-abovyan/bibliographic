@@ -85,8 +85,7 @@ public class OperatorImpl extends NamedParameterJdbcDaoSupport implements Operat
      * @see Operator#remove(am.bibliographic.entity.Entity)
      */
     @Override
-    public void remove(Entity entity) {
-        int id = ((OperatorEntity) entity).getId();
+    public void remove(int id) {
         final String query = "DELETE FROM operator WHERE id = ? ";
         getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);

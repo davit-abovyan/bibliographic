@@ -1,6 +1,6 @@
 package am.bibliographic.entity;
 
-public class BohJournalEntity implements Entity{
+public class BohJournalEntity implements MultyIdEntity{
     private int journalId;
     private int bohId;
 

@@ -84,11 +84,10 @@ public class ScienceFieldImpl extends NamedParameterJdbcDaoSupport implements Sc
     }
 
     /**
-     * @see ScienceField#remove(am.bibliographic.entity.Entity)
+     * @see ScienceField#remove(int)
      */
     @Override
-    public void remove(Entity entity) {
-        int id = ((ScienceFieldEntity) entity).getId();
+    public void remove(int id) {
         final String query = "DELETE FROM science_field WHERE id = ? ";
         getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);

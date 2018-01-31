@@ -35,7 +35,7 @@ public interface Person extends BaseDAO{
 
     /**
      * Removes the record from person table
-     * @param entity the entity to be removed
+     * @param id the id of the entity to be removed
      */
-    public void remove(Entity entity);
+    public void remove(int id);
 }

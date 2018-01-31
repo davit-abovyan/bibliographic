@@ -92,12 +92,10 @@ public class PersonImpl extends NamedParameterJdbcDaoSupport implements Person {
     }
 
     /**
-     * @see Person#remove(am.bibliographic.entity.Entity)
+     * @see Person#remove(int)
      */
     @Override
-    public void remove(Entity entity) {
-        PersonEntity personEntity = (PersonEntity) entity;
-        int id = personEntity.getId();
+    public void remove(int id) {
         final String query = "DELETE FROM person WHERE id = ? ";
         getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);

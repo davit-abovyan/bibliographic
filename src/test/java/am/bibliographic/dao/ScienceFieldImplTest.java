@@ -36,7 +36,7 @@ public class ScienceFieldImplTest extends BaseIntegrationTest {
         try{
             doAutoDelete();
         } catch (Exception e){
-            fail("Entity removal failed in Person test. Detail: "+e.getMessage());
+            fail("Entity removal failed. Detail: "+e.getMessage());
         }
     }
 

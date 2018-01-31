@@ -6,9 +6,11 @@ import am.bibliographic.entity.ScienceFieldEntity;
 import am.bibliographic.exception.ServiceException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class ScienceFieldService extends BaseService {
     private Logger log = Logger.getLogger(ScienceFieldService.class);
     private ScienceField scienceField;

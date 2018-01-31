@@ -1,9 +1,7 @@
 package am.bibliographic.dao.impl;
 
-import am.bibliographic.constants.Country;
 import am.bibliographic.dao.Journal;
 import am.bibliographic.dao.impl.mapper.JournalRowMapper;
-import am.bibliographic.entity.Entity;
 import am.bibliographic.entity.JournalEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
@@ -159,11 +157,10 @@ public class JournalImpl extends NamedParameterJdbcDaoSupport implements Journal
     }
 
     /**
-     * @see Journal#remove(am.bibliographic.entity.Entity)
+     * @see Journal#remove(int)
      */
     @Override
-    public void remove(Entity entity) {
-        int id = ((JournalEntity) entity).getId();
+    public void remove(int id) {
         final String query = "DELETE FROM journal WHERE id = ? ";
         getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);

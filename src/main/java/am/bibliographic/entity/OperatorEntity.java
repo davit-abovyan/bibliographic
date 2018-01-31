@@ -1,6 +1,6 @@
 package am.bibliographic.entity;
 
-public class OperatorEntity implements Entity{
+public class OperatorEntity implements IdEntity{
     private int id;
     private String name;
     private boolean isReviewer;

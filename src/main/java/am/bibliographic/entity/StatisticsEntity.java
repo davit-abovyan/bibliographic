@@ -1,6 +1,6 @@
 package am.bibliographic.entity;
 
-public class StatisticsEntity implements Entity{
+public class StatisticsEntity implements IdEntity{
     private int journalId;
     private int IF_2010;
     private int IF_2011;
@@ -42,7 +42,7 @@ public class StatisticsEntity implements Entity{
         this.nSelfciteAINC = nSelfciteAINC;
     }
 
-    public int getJournalId() {
+    public int getId() {
         return journalId;
     }
 

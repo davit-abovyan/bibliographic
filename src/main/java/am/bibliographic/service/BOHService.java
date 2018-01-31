@@ -5,9 +5,11 @@ import am.bibliographic.entity.BOHEntity;
 import am.bibliographic.exception.ServiceException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class BOHService extends BaseService {
     private Logger log = Logger.getLogger(BOHService.class);
     private BOH boh;
@@ -53,8 +55,12 @@ public class BOHService extends BaseService {
     }
 
     public void remove(BOHEntity entity){
+        remove(entity.getId());
+    }
+
+    public void remove(int id){
         try{
-            boh.remove(entity);
+            boh.remove(id);
         } catch (RuntimeException e){
             log.warn(e.getMessage());
             throw new ServiceException("Error:");

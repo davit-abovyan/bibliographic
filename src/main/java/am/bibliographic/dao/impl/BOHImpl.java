@@ -81,11 +81,10 @@ public class BOHImpl extends NamedParameterJdbcDaoSupport implements BOH {
     }
 
     /**
-     * @see BOH#remove(am.bibliographic.entity.Entity)
+     * @see BOH#remove(int)
      */
     @Override
-    public void remove(Entity entity) {
-        int id = ((BOHEntity) entity).getId();
+    public void remove(int id) {
         final String query = "DELETE FROM boh WHERE id = ? ";
         getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);

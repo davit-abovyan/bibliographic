@@ -1,6 +1,6 @@
 package am.bibliographic.entity;
 
-public class ScienceFieldEntity implements Entity{
+public class ScienceFieldEntity implements IdEntity{
     private int id;
     private String nameArm;
     private String nameRus;

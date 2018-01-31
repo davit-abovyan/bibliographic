@@ -30,7 +30,7 @@ public class StatisticsImpl extends NamedParameterJdbcDaoSupport implements Stat
                 " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-            ps.setInt(1, entity.getJournalId());
+            ps.setInt(1, entity.getId());
             ps.setInt(2, entity.getIF_2010());
             ps.setInt(3, entity.getIF_2011());
             ps.setInt(4, entity.getIF_2012());
@@ -90,21 +90,7 @@ public class StatisticsImpl extends NamedParameterJdbcDaoSupport implements Stat
             ps.setInt(11, entity.getnReferenceAINC());
             ps.setInt(12, entity.getnCitationAINC());
             ps.setInt(13, entity.getnSelfciteAINC());
-            ps.setInt(14, entity.getJournalId());
-            return ps;
-        });
-    }
-
-    /**
-     * @see Statistics#remove(am.bibliographic.entity.Entity)
-     */
-    @Override
-    public void remove(Entity entity) {
-        int id = ((StatisticsEntity) entity).getJournalId();
-        final String query = "DELETE FROM statistics WHERE journal_id = ? ";
-        getJdbcTemplate().update( connection -> {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, id);
+            ps.setInt(14, entity.getId());
             return ps;
         });
     }

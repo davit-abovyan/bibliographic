@@ -170,7 +170,10 @@ public class BaseIntegrationTest extends BaseTest {
     protected void doAutoDelete(){
         while (!autoDelete.empty()){
             Pair<BaseDAO, Entity> pair = autoDelete.pop();
-            pair.getFirst().remove(pair.getSecond());
+            if( pair.getSecond() instanceof IdEntity )
+                pair.getFirst().remove(pair.getSecond().getId());
+            else
+                pair.getFirst().remove(pair.getSecond());
         }
     }
 }

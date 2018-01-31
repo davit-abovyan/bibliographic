@@ -2,7 +2,7 @@ package am.bibliographic.entity;
 
 import java.util.Objects;
 
-public class PersonEntity implements Entity{
+public class PersonEntity implements IdEntity{
 
     private int id;
     private String nameInitialArm;

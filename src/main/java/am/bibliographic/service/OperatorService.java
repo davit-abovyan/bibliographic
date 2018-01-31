@@ -5,9 +5,11 @@ import am.bibliographic.entity.OperatorEntity;
 import am.bibliographic.exception.ServiceException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class OperatorService extends BaseService {
     private Logger log = Logger.getLogger(OperatorService.class);
     private Operator operator;
@@ -53,8 +55,12 @@ public class OperatorService extends BaseService {
     }
 
     public void remove(OperatorEntity entity){
+        remove(entity.getId());
+    }
+
+    public void remove(int id){
         try{
-            operator.remove(entity);
+            operator.remove(id);
         } catch (RuntimeException e){
             log.warn(e.getMessage());
             throw new ServiceException("Error:");

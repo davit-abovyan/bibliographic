@@ -3,7 +3,7 @@ package am.bibliographic.entity;
 import am.bibliographic.constants.Country;
 import am.bibliographic.constants.Language;
 
-public class JournalEntity implements Entity{
+public class JournalEntity implements IdEntity{
 
     private int id;
     private String code;

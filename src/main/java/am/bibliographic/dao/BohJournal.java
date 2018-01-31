@@ -6,7 +6,7 @@ import jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType;
 
 import java.util.List;
 
-public interface BohJournal extends BaseDAO{
+public interface BohJournal extends BaseDAO {
     /**
      * Adds new record in boh_journal table
      * @param entity the entity to be added
