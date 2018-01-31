@@ -55,11 +55,6 @@ public class StatisticsService extends BaseService {
     }
 
     public void remove(StatisticsEntity entity){
-        try{
-            statistics.remove(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        statistics.remove(entity);
     }
 }

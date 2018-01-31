@@ -4,6 +4,7 @@ import am.bibliographic.dao.Statistics;
 import am.bibliographic.dao.impl.mapper.StatisticsRowMapper;
 import am.bibliographic.entity.Entity;
 import am.bibliographic.entity.StatisticsEntity;
+import am.bibliographic.exception.NoSuchRecordToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.stereotype.Component;
@@ -99,12 +100,13 @@ public class StatisticsImpl extends NamedParameterJdbcDaoSupport implements Stat
      * @see Statistics#remove(int)
      */
     @Override
-    public void remove(int journalId) {
+    public void remove(int id) {
         final String query = "DELETE FROM statistics WHERE journal_id = ? ";
-        getJdbcTemplate().update( connection -> {
+        int result = getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, journalId);
+            ps.setInt(1, id);
             return ps;
         });
+        if(result != 1) throw new NoSuchRecordToRemove("BOH with id "+id+" doesn't exist to be removed.");
     }
 }

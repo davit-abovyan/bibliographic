@@ -18,9 +18,9 @@ CREATE TABLE operator (
 
 CREATE TABLE person (
   id INT PRIMARY KEY AUTO_INCREMENT,
-  name_initial_arm VARCHAR(255),
-  name_initial_rus VARCHAR(255),
-  name_initial_eng VARCHAR(255),
+  name_initial_arm VARCHAR(255) NOT NULL,
+  name_initial_rus VARCHAR(255) NOT NULL,
+  name_initial_eng VARCHAR(255) NOT NULL,
   name_final_arm VARCHAR(255),
   name_final_rus VARCHAR(255),
   name_final_eng VARCHAR(255),

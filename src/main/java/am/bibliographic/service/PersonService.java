@@ -54,12 +54,7 @@ public class PersonService extends BaseService {
         }
     }
 
-    public void remove(PersonEntity entity){
-        try{
-            person.remove(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+    public void remove(int id){
+        person.remove(id);
     }
 }

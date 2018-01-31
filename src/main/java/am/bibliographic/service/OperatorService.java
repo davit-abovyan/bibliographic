@@ -30,7 +30,8 @@ public class OperatorService extends BaseService {
 
     public OperatorEntity get(int id){
         try{
-            return operator.read(id);
+            OperatorEntity entity = operator.read(id);
+            return  entity;
         } catch (RuntimeException e){
             log.warn(e.getMessage());
             throw new ServiceException("Error:");
@@ -59,11 +60,6 @@ public class OperatorService extends BaseService {
     }
 
     public void remove(int id){
-        try{
-            operator.remove(id);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        operator.remove(id);
     }
 }

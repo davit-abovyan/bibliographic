@@ -4,6 +4,7 @@ import am.bibliographic.dao.BohJournal;
 import am.bibliographic.dao.impl.mapper.BohJournalRowMapper;
 import am.bibliographic.entity.BohJournalEntity;
 import am.bibliographic.entity.Entity;
+import am.bibliographic.exception.NoSuchRecordToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -86,12 +87,13 @@ public class BohJournalImpl extends NamedParameterJdbcDaoSupport implements BohJ
      * @see BohJournal#removeByJournal(int)
      */
     @Override
-    public void removeByJournal(int journalId) {
+    public void removeByJournal(int id) {
         final String query = "DELETE FROM boh_journal WHERE journal_id = ?";
-        getJdbcTemplate().update( connection -> {
+        int result = getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, journalId);
+            ps.setInt(1, id);
             return ps;
         });
+        if(result != 1) throw new NoSuchRecordToRemove("BOH with id "+id+" doesn't exist to be removed.");
     }
 }

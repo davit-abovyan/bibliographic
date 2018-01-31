@@ -3,6 +3,7 @@ package am.bibliographic.dao.impl;
 import am.bibliographic.dao.Journal;
 import am.bibliographic.dao.impl.mapper.JournalRowMapper;
 import am.bibliographic.entity.JournalEntity;
+import am.bibliographic.exception.NoSuchRecordToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -162,10 +163,11 @@ public class JournalImpl extends NamedParameterJdbcDaoSupport implements Journal
     @Override
     public void remove(int id) {
         final String query = "DELETE FROM journal WHERE id = ? ";
-        getJdbcTemplate().update( connection -> {
+        int result = getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             return ps;
         });
+        if(result != 1) throw new NoSuchRecordToRemove("BOH with id "+id+" doesn't exist to be removed.");
     }
 }

@@ -5,13 +5,15 @@ import am.bibliographic.entity.BOHEntity;
 import am.bibliographic.exception.ServiceException;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public class BOHService extends BaseService {
-    private Logger log = Logger.getLogger(BOHService.class);
+
     private BOH boh;
 
     @Autowired
@@ -20,28 +22,17 @@ public class BOHService extends BaseService {
     }
 
     public int add(BOHEntity bohEntity){
-        try{
             return boh.create(bohEntity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
     }
 
     public BOHEntity get(int id){
-        try{
             return boh.read(id);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
     }
 
     public List<BOHEntity> getAll(){
         try{
             return boh.getAll();
         } catch (RuntimeException e){
-            log.warn(e.getMessage());
             throw new ServiceException("Error:");
         }
     }
@@ -49,7 +40,6 @@ public class BOHService extends BaseService {
         try{
             boh.update(bohEntity);
         } catch (RuntimeException e){
-            log.warn(e.getMessage());
             throw new ServiceException("Error:");
         }
     }
@@ -62,7 +52,6 @@ public class BOHService extends BaseService {
         try{
             boh.remove(id);
         } catch (RuntimeException e){
-            log.warn(e.getMessage());
             throw new ServiceException("Error:");
         }
     }

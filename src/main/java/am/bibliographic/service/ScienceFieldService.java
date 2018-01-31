@@ -56,11 +56,6 @@ public class ScienceFieldService extends BaseService {
     }
 
     public void remove(ScienceFieldEntity entity){
-        try{
-            scienceField.remove(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        scienceField.remove(entity);
     }
 }

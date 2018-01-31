@@ -16,6 +16,12 @@ public class PersonEntity implements IdEntity{
     public PersonEntity() {
     }
 
+    public PersonEntity(String nameInitialArm, String nameInitialRus, String nameInitialEng) {
+        this.nameInitialArm = nameInitialArm;
+        this.nameInitialRus = nameInitialRus;
+        this.nameInitialEng = nameInitialEng;
+    }
+
     public int getId() {
         return id;
     }

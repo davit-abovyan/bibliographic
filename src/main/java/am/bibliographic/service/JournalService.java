@@ -66,12 +66,7 @@ public class JournalService extends BaseService {
     }
 
     public void remove(JournalEntity entity){
-        try{
-            statistics.remove(entity.getId());
-            journal.remove(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        statistics.remove(entity.getId());
+        journal.remove(entity);
     }
 }
