@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class PersonService extends BaseService {
-    private Logger log = Logger.getLogger(PersonService.class);
+
     private Person person;
 
     @Autowired
@@ -20,38 +20,18 @@ public class PersonService extends BaseService {
     }
 
     public int add(PersonEntity entity){
-        try{
-            return person.create(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return person.create(entity);
     }
 
     public PersonEntity get(int id){
-        try{
-            return person.read(id);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return person.read(id);
     }
 
     public List<PersonEntity> getAll(){
-        try{
-            return person.getAll();
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return person.getAll();
     }
     public void update(PersonEntity entity){
-        try{
-            person.update(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        person.update(entity);
     }
 
     public void remove(int id){

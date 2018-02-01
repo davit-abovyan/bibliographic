@@ -11,7 +11,7 @@ import java.util.List;
 
 @Service
 public class OperatorService extends BaseService {
-    private Logger log = Logger.getLogger(OperatorService.class);
+
     private Operator operator;
 
     @Autowired
@@ -20,43 +20,20 @@ public class OperatorService extends BaseService {
     }
 
     public int add(OperatorEntity entity){
-        try{
-            return operator.create(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return operator.create(entity);
     }
 
     public OperatorEntity get(int id){
-        try{
-            OperatorEntity entity = operator.read(id);
-            return  entity;
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        OperatorEntity entity = operator.read(id);
+        return  entity;
     }
 
     public List<OperatorEntity> getAll(){
-        try{
-            return operator.getAll();
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
-    }
-    public void update(OperatorEntity entity){
-        try{
-            operator.update(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return operator.getAll();
     }
 
-    public void remove(OperatorEntity entity){
-        remove(entity.getId());
+    public void update(OperatorEntity entity){
+        operator.update(entity);
     }
 
     public void remove(int id){

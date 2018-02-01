@@ -95,6 +95,6 @@ public class ScienceFieldImpl extends NamedParameterJdbcDaoSupport implements Sc
             ps.setInt(1, id);
             return ps;
         });
-        if(result != 1) throw new NoSuchRecordToRemove("BOH with id "+id+" doesn't exist to be removed.");
+        if(result != 1) throw new NoSuchRecordToRemove("ScienceField with id "+id+" doesn't exist to be removed.");
     }
 }

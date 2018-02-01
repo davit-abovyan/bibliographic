@@ -12,7 +12,7 @@ import java.util.List;
 
 @Service
 public class ScienceFieldService extends BaseService {
-    private Logger log = Logger.getLogger(ScienceFieldService.class);
+
     private ScienceField scienceField;
 
     @Autowired
@@ -21,41 +21,22 @@ public class ScienceFieldService extends BaseService {
     }
 
     public int add(ScienceFieldEntity entity){
-        try{
-            return scienceField.create(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return scienceField.create(entity);
     }
 
     public ScienceFieldEntity get(int id){
-        try{
-            return scienceField.read(id);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return scienceField.read(id);
     }
 
     public List<ScienceFieldEntity> getAll(){
-        try{
-            return scienceField.getAll();
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
-    }
-    public void update(ScienceFieldEntity entity){
-        try{
-            scienceField.update(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return scienceField.getAll();
     }
 
-    public void remove(ScienceFieldEntity entity){
-        scienceField.remove(entity);
+    public void update(ScienceFieldEntity entity){
+        scienceField.update(entity);
+    }
+
+    public void remove(int id){
+        scienceField.remove(id);
     }
 }

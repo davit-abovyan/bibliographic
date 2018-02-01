@@ -103,6 +103,6 @@ public class PersonImpl extends NamedParameterJdbcDaoSupport implements Person {
             ps.setInt(1, id);
             return ps;
         });
-        if(result != 1) throw new NoSuchRecordToRemove("BOH with id "+id+" doesn't exist to be removed.");
+        if(result != 1) throw new NoSuchRecordToRemove("Person with id "+id+" doesn't exist to be removed.");
     }
 }

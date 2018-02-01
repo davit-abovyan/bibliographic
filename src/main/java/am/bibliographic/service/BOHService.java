@@ -30,29 +30,13 @@ public class BOHService extends BaseService {
     }
 
     public List<BOHEntity> getAll(){
-        try{
-            return boh.getAll();
-        } catch (RuntimeException e){
-            throw new ServiceException("Error:");
-        }
+        return boh.getAll();
     }
     public void update(BOHEntity bohEntity){
-        try{
-            boh.update(bohEntity);
-        } catch (RuntimeException e){
-            throw new ServiceException("Error:");
-        }
-    }
-
-    public void remove(BOHEntity entity){
-        remove(entity.getId());
+        boh.update(bohEntity);
     }
 
     public void remove(int id){
-        try{
-            boh.remove(id);
-        } catch (RuntimeException e){
-            throw new ServiceException("Error:");
-        }
+        boh.remove(id);
     }
 }

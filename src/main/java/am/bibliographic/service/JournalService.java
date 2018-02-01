@@ -29,40 +29,21 @@ public class JournalService extends BaseService {
     }
 
     public int add(JournalEntity entity){
-        try{
-            int id = journal.create(entity);
-            statistics.create(new StatisticsEntity(id));
-            return id;
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        int id = journal.create(entity);
+        statistics.create(new StatisticsEntity(id));
+        return id;
     }
 
     public JournalEntity get(int id){
-        try{
-            return journal.read(id);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return journal.read(id);
     }
 
     public List<JournalEntity> getAll(){
-        try{
-            return journal.getAll();
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        return journal.getAll();
     }
+
     public void update(JournalEntity entity){
-        try{
-            journal.update(entity);
-        } catch (RuntimeException e){
-            log.warn(e.getMessage());
-            throw new ServiceException("Error:");
-        }
+        journal.update(entity);
     }
 
     public void remove(JournalEntity entity){
