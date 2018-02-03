@@ -159,9 +159,26 @@ public class BaseIntegrationTest extends BaseTest {
     }
 
     protected StatisticsEntity createStatistics(int journalId, int start){
-        StatisticsEntity statistics = new StatisticsEntity(journalId,start+1,start+2,start+3,
-                start+4,start+5,start+6, start+7,start+8,start+9,
-                start+10, start+11, start+12, start+13);
+        StatisticsEntity statistics = new StatisticsEntity(journalId)
+                .setIF2010(start+100)
+                .setIF2011(start+101)
+                .setIF2012(start+102)
+                .setIF2013(start+103)
+                .setIF2014(start+104)
+                .setIF2015(start+105)
+                .setIF2016(start+106)
+                .setIF2017(start+107)
+                .setIF2018(start+108)
+                .setIF2019(start+109)
+                .setIF2020(start+110)
+                .setnIssueElib(start+1)
+                .setnIssueAINC(start+2)
+                .setnArticleElib(start+3)
+                .setnArticleAINC(start+4)
+                .setnReferenceAINC(start+5)
+                .setnCitationAINC(start+6)
+                .setnSelfciteAINC(start+7);
+
         statisticsImpl.create(statistics);
         autoDelete.push(new Pair<>(statisticsImpl, statistics));
         return statistics;
