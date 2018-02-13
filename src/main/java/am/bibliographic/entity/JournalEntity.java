@@ -45,9 +45,8 @@ public class JournalEntity implements IdEntity{
     public JournalEntity() {
     }
 
-    public JournalEntity(int id, String code, int operatorId, String nameArm, String nameRus, String nameEng, String fullNameArm,
-                         String fullNameRus, String fullNameEng, String ISSNPrint, String founderArm) {
-        this.id = id;
+    public JournalEntity(String code, int operatorId, String nameArm, String nameRus, String nameEng, String fullNameArm,
+                         String fullNameRus, String fullNameEng, String ISSNPrint, String founderArm, int editor, int scienceFieldId) {
         this.code = code;
         this.operatorId = operatorId;
         this.nameArm = nameArm;
@@ -58,6 +57,8 @@ public class JournalEntity implements IdEntity{
         this.fullNameEng = fullNameEng;
         this.ISSNPrint = ISSNPrint;
         this.founderArm = founderArm;
+        this.editor = editor;
+        this.scienceFieldId = scienceFieldId;
     }
 
     public int getIndexedLibraries() {

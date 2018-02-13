@@ -58,7 +58,7 @@ public class JournalImpl extends NamedParameterJdbcDaoSupport implements Journal
             ps.setString(16, entity.getFax());
             ps.setString(17, entity.getEmail());
             ps.setString(18, entity.getWebsite());
-            ps.setString(19, entity.getCountry().name());
+            ps.setString(19, entity.getCountry() != null ? entity.getCountry().name() : "");
             ps.setString(20, entity.getCity());
             ps.setString(21, entity.getAddress());
             ps.setInt(22, entity.getFrequency());

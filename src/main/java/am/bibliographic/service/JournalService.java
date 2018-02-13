@@ -46,8 +46,8 @@ public class JournalService extends BaseService {
         journal.update(entity);
     }
 
-    public void remove(JournalEntity entity){
-        statistics.remove(entity.getId());
-        journal.remove(entity);
+    public void remove(int id){
+        statistics.remove(id);
+        journal.remove(id);
     }
 }

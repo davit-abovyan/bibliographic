@@ -119,6 +119,6 @@ public class StatisticsImpl extends NamedParameterJdbcDaoSupport implements Stat
             ps.setInt(1, id);
             return ps;
         });
-        if(result != 1) throw new NoSuchRecordToRemove("BOH with id "+id+" doesn't exist to be removed.");
+        if(result != 1) throw new NoSuchRecordToRemove("Statistics with id "+id+" doesn't exist to be removed.");
     }
 }
