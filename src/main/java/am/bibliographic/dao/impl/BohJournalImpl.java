@@ -89,11 +89,10 @@ public class BohJournalImpl extends NamedParameterJdbcDaoSupport implements BohJ
     @Override
     public void removeByJournal(int id) {
         final String query = "DELETE FROM boh_journal WHERE journal_id = ?";
-        int result = getJdbcTemplate().update( connection -> {
+        getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, id);
             return ps;
         });
-        if(result != 1) throw new NoSuchRecordToRemove("Record in BohJournal with Journal id "+id+" doesn't exist to be removed.");
     }
 }
