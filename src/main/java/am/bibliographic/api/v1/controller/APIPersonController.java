@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping(value = "/api/v1.0/person", produces = MediaType.APPLICATION_JSON_VALUE)
 public class APIPersonController extends APIController {
 

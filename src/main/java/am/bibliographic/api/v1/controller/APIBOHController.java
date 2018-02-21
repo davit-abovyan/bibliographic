@@ -14,7 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 
 @RestController
-@RequestMapping(value = "/api/v1.0/boh", produces = MediaType.APPLICATION_JSON_VALUE)
+@CrossOrigin("*")
+@RequestMapping(value = "/api/v1.0/boh", produces = MediaType.APPLICATION_JSON_VALUE )
 public class APIBOHController extends APIController {
 
     private BOHService bohService;
