@@ -1,13 +1,10 @@
 package am.bibliographic.dao;
 
 import am.bibliographic.BaseIntegrationTest;
-import am.bibliographic.dao.impl.PersonImpl;
 import am.bibliographic.entity.PersonEntity;
-import am.bibliographic.util.Pair;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
 
@@ -39,7 +36,7 @@ public class PersonImplTest extends BaseIntegrationTest {
         assertEquals("Person final Armenian name is incorrect", personNameFinalArm, personEntity.getNameFinalArm());
         assertEquals("Person final Russian name is incorrect", personNameFinalRus, personEntity.getNameFinalRus());
         assertEquals("Person final English name is incorrect", personNameFinalEng, personEntity.getNameFinalEng());
-        assertTrue("Person review state is incorrect", personEntity.isReviewState());
+        assertTrue("Person review state is incorrect", personEntity.isInReviewState());
     }
 
     @Test
@@ -56,7 +53,7 @@ public class PersonImplTest extends BaseIntegrationTest {
                 .setNameFinalArm(personNameFinalArm+" other")
                 .setNameFinalRus(personNameFinalRus+" other")
                 .setNameFinalEng(personNameFinalEng+" other")
-                .setReviewState(false);
+                .setInReviewState(false);
         personImpl.update(personEntity);
         PersonEntity returnedObject = personImpl.read(personEntity.getId());
         assertTrue("Person edit is not correct", personEntity.equals(returnedObject));

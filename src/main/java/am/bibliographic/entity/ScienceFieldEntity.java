@@ -1,10 +1,21 @@
 package am.bibliographic.entity;
 
-public class ScienceFieldEntity implements IdEntity{
+public class ScienceFieldEntity implements IdEntity {
+
     private int id;
     private String nameArm;
     private String nameRus;
     private String nameEng;
+
+    public ScienceFieldEntity() {}
+
+    // full constructor
+    public ScienceFieldEntity(int id, String nameArm, String nameRus, String nameEng) {
+        this.id = id;
+        this.nameArm = nameArm;
+        this.nameRus = nameRus;
+        this.nameEng = nameEng;
+    }
 
     public int getId() {
         return id;
@@ -40,14 +51,5 @@ public class ScienceFieldEntity implements IdEntity{
     public ScienceFieldEntity setNameEng(String nameEng) {
         this.nameEng = nameEng;
         return this;
-    }
-
-    public ScienceFieldEntity() {
-    }
-
-    public ScienceFieldEntity(String nameArm, String nameRus, String nameEng) {
-        this.nameArm = nameArm;
-        this.nameRus = nameRus;
-        this.nameEng = nameEng;
     }
 }

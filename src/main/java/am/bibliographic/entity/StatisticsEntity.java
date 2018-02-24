@@ -1,6 +1,7 @@
 package am.bibliographic.entity;
 
-public class StatisticsEntity implements IdEntity{
+public class StatisticsEntity implements IdEntity {
+
     private int journalId;
     private int IF2010;
     private int IF2011;
@@ -21,7 +22,31 @@ public class StatisticsEntity implements IdEntity{
     private int nCitationAINC;
     private int nSelfciteAINC;
 
-    public StatisticsEntity() {
+    public StatisticsEntity() {}
+
+    // full constructor
+    public StatisticsEntity(int journalId, int IF2010, int IF2011, int IF2012, int IF2013, int IF2014, int IF2015,
+                            int IF2016, int IF2017, int IF2018, int IF2019, int IF2020, int nIssueElib, int nIssueAINC,
+                            int nArticleElib, int nArticleAINC, int nReferenceAINC, int nCitationAINC, int nSelfciteAINC) {
+        this.journalId = journalId;
+        this.IF2010 = IF2010;
+        this.IF2011 = IF2011;
+        this.IF2012 = IF2012;
+        this.IF2013 = IF2013;
+        this.IF2014 = IF2014;
+        this.IF2015 = IF2015;
+        this.IF2016 = IF2016;
+        this.IF2017 = IF2017;
+        this.IF2018 = IF2018;
+        this.IF2019 = IF2019;
+        this.IF2020 = IF2020;
+        this.nIssueElib = nIssueElib;
+        this.nIssueAINC = nIssueAINC;
+        this.nArticleElib = nArticleElib;
+        this.nArticleAINC = nArticleAINC;
+        this.nReferenceAINC = nReferenceAINC;
+        this.nCitationAINC = nCitationAINC;
+        this.nSelfciteAINC = nSelfciteAINC;
     }
 
     public StatisticsEntity(int journalId) {

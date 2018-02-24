@@ -12,7 +12,7 @@ public class OperatorRowMapper implements RowMapper<OperatorEntity> {
         OperatorEntity operatorEntity = new OperatorEntity();
         operatorEntity.setId(resultSet.getInt("id"));
         operatorEntity.setName(resultSet.getString("name"));
-        operatorEntity.setIs_reviewer(resultSet.getBoolean("is_reviewer"));
+        operatorEntity.setReviewer(resultSet.getBoolean("is_reviewer"));
         return operatorEntity;
     }
 }

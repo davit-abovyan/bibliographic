@@ -17,7 +17,7 @@ public class PersonRowMapper implements RowMapper<PersonEntity> {
         personEntity.setNameFinalArm(resultSet.getString("name_final_arm"));
         personEntity.setNameFinalRus(resultSet.getString("name_final_rus"));
         personEntity.setNameFinalEng(resultSet.getString("name_final_eng"));
-        personEntity.setReviewState(resultSet.getBoolean("review_state"));
+        personEntity.setInReviewState(resultSet.getBoolean("review_state"));
         return personEntity;
     }
 }

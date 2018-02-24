@@ -25,7 +25,7 @@ public class ScienceFieldImplTest extends BaseIntegrationTest {
 
     @Before
     public void setUp(){
-        scienceFieldEntity = new ScienceFieldEntity(nameArm, nameRus, nameEng);
+        scienceFieldEntity = new ScienceFieldEntity().setNameArm(nameArm).setNameRus(nameRus).setNameEng(nameEng);
         scienceFieldImpl.create(scienceFieldEntity);
         scienceFieldEntity = scienceFieldImpl.read(scienceFieldEntity.getId());
         autoDelete.push(new Pair<>(scienceFieldImpl, scienceFieldEntity));
@@ -71,7 +71,10 @@ public class ScienceFieldImplTest extends BaseIntegrationTest {
         String newNameArm = "New Economics Arm";
         String newNameRus = "New Economics Rus";
         String newNameEng = "New Economics Eng";
-        ScienceFieldEntity anotherScienceField = new ScienceFieldEntity(newNameArm, newNameRus, newNameEng);
+        ScienceFieldEntity anotherScienceField = new ScienceFieldEntity()
+                .setNameEng(newNameArm)
+                .setNameRus(newNameRus)
+                .setNameEng(newNameEng);
         scienceFieldImpl.create(anotherScienceField);
         autoDelete.push(new Pair<>(scienceFieldImpl, anotherScienceField));
         assertEquals("All science fields are not fully retrieved", 2, scienceFieldImpl.getAll().size());

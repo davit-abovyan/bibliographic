@@ -124,7 +124,10 @@ public class BaseIntegrationTest extends BaseTest {
         String scieceFieldNameRus = "Economics Rus" + addition;
         String scieceFieldNameEng = "Economics Eng" + addition;
 
-        ScienceFieldEntity scienceFieldEntity = new ScienceFieldEntity(scieceFieldNameArm, scieceFieldNameRus, scieceFieldNameEng);
+        ScienceFieldEntity scienceFieldEntity = new ScienceFieldEntity()
+            .setNameArm(scieceFieldNameArm)
+            .setNameRus(scieceFieldNameRus)
+            .setNameEng(scieceFieldNameEng);
         scienceFieldImpl.create(scienceFieldEntity);
         autoDelete.push(new Pair<>(scienceFieldImpl, scienceFieldEntity));
         return scienceFieldEntity;
@@ -138,21 +141,21 @@ public class BaseIntegrationTest extends BaseTest {
                 .setNameFinalArm(personNameFinalArm + addition)
                 .setNameFinalRus(personNameFinalRus + addition)
                 .setNameFinalEng(personNameFinalEng + addition)
-                .setReviewState(state);
+                .setInReviewState(state);
         personImpl.create(personEntity);
         autoDelete.push(new Pair<>(personImpl,personEntity));
         return personEntity;
     }
 
     protected BOHEntity createBOH(String name){
-        BOHEntity bohEntity = new BOHEntity(name);
+        BOHEntity bohEntity = new BOHEntity().setName(name);
         BOHImpl.create(bohEntity);
         autoDelete.push(new Pair<>(BOHImpl, bohEntity));
         return bohEntity;
     }
 
     protected OperatorEntity createOperator(String name, boolean isAdmin){
-        OperatorEntity operatorEntity = new OperatorEntity(name, isAdmin);
+        OperatorEntity operatorEntity = new OperatorEntity().setName(name).setReviewer(isAdmin);
         operatorImpl.create(operatorEntity);
         autoDelete.push(new Pair<>(operatorImpl, operatorEntity));
         return operatorEntity;

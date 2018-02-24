@@ -11,15 +11,21 @@ public class PersonEntity implements IdEntity{
     private String nameFinalArm;
     private String nameFinalRus;
     private String nameFinalEng;
-    private boolean reviewState;
+    private boolean inReviewState;
 
-    public PersonEntity() {
-    }
+    public PersonEntity() {}
 
-    public PersonEntity(String nameInitialArm, String nameInitialRus, String nameInitialEng) {
+    // full constructor
+    public PersonEntity(int id, String nameInitialArm, String nameInitialRus, String nameInitialEng,
+                        String nameFinalArm, String nameFinalRus, String nameFinalEng, boolean reviewState) {
+        this.id = id;
         this.nameInitialArm = nameInitialArm;
         this.nameInitialRus = nameInitialRus;
         this.nameInitialEng = nameInitialEng;
+        this.nameFinalArm = nameFinalArm;
+        this.nameFinalRus = nameFinalRus;
+        this.nameFinalEng = nameFinalEng;
+        this.inReviewState = reviewState;
     }
 
     public int getId() {
@@ -85,12 +91,12 @@ public class PersonEntity implements IdEntity{
         return this;
     }
 
-    public boolean isReviewState() {
-        return reviewState;
+    public boolean isInReviewState() {
+        return inReviewState;
     }
 
-    public PersonEntity setReviewState(boolean reviewState) {
-        this.reviewState = reviewState;
+    public PersonEntity setInReviewState(boolean inReviewState) {
+        this.inReviewState = inReviewState;
         return this;
     }
 
@@ -106,6 +112,6 @@ public class PersonEntity implements IdEntity{
                 Objects.equals(nameFinalArm, that.getNameFinalArm()) &&
                 Objects.equals(nameFinalRus, that.getNameFinalRus()) &&
                 Objects.equals(nameFinalEng, that.getNameFinalEng()) &&
-                Objects.equals(reviewState, that.isReviewState());
+                Objects.equals(inReviewState, that.isInReviewState());
     }
 }

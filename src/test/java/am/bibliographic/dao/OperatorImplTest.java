@@ -40,7 +40,7 @@ public class OperatorImplTest extends BaseIntegrationTest {
 
     @Test
     public void getAll_success(){
-        OperatorEntity otherOperator = new OperatorEntity("Jone",false);
+        OperatorEntity otherOperator = new OperatorEntity().setName("Jone").setReviewer(false);
         operatorImpl.create(otherOperator);
         autoDelete.push(new Pair<>(operatorImpl, otherOperator));
         assertEquals("The full list of operators is not returned", 2, operatorImpl.getAll().size());
@@ -50,10 +50,10 @@ public class OperatorImplTest extends BaseIntegrationTest {
     public void update_success(){
         String newName = "Davit";
         operator.setName(newName);
-        operator.setIs_reviewer(false);
+        operator.setReviewer(false);
         operatorImpl.update(operator);
         OperatorEntity updatedOperator = operatorImpl.read(operator.getId());
         assertEquals("Operator name is not edited", newName, updatedOperator.getName());
-        assertFalse("Operator admin status is not edited", updatedOperator.isIs_reviewer());
+        assertFalse("Operator admin status is not edited", updatedOperator.isReviewer());
     }
 }

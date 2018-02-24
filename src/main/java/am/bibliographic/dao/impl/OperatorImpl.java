@@ -2,7 +2,6 @@ package am.bibliographic.dao.impl;
 
 import am.bibliographic.dao.Operator;
 import am.bibliographic.dao.impl.mapper.OperatorRowMapper;
-import am.bibliographic.entity.Entity;
 import am.bibliographic.entity.OperatorEntity;
 import am.bibliographic.exception.NoSuchRecordToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,7 +36,7 @@ public class OperatorImpl extends NamedParameterJdbcDaoSupport implements Operat
         int result = getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, entity.getName());
-            ps.setBoolean(2, entity.isIs_reviewer());
+            ps.setBoolean(2, entity.isReviewer());
             return ps;
         }, keyHolder);
 
@@ -76,7 +75,7 @@ public class OperatorImpl extends NamedParameterJdbcDaoSupport implements Operat
         getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, entity.getName());
-            ps.setBoolean(2, entity.isIs_reviewer());
+            ps.setBoolean(2, entity.isReviewer());
             ps.setInt(3, entity.getId());
             return ps;
         });

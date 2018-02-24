@@ -1,39 +1,44 @@
 package am.bibliographic.entity;
 
-public class OperatorEntity implements IdEntity{
+public class OperatorEntity implements IdEntity {
+
     private int id;
     private String name;
-    private boolean isReviewer;
+    private boolean reviewer;
+
+    public OperatorEntity() {}
+
+    // full constructor
+    public OperatorEntity(int id, String name, boolean isReviewer) {
+        this.id = id;
+        this.name = name;
+        this.reviewer = isReviewer;
+    }
 
     public int getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public OperatorEntity setId(int id) {
         this.id = id;
+        return this;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
+    public OperatorEntity setName(String name) {
         this.name = name;
+        return this;
     }
 
-    public boolean isIs_reviewer() {
-        return isReviewer;
+    public boolean isReviewer() {
+        return reviewer;
     }
 
-    public void setIs_reviewer(boolean isReviewer) {
-        this.isReviewer = isReviewer;
-    }
-
-    public OperatorEntity() {
-    }
-
-    public OperatorEntity(String name, boolean isReviewer) {
-        this.name = name;
-        this.isReviewer = isReviewer;
+    public OperatorEntity setReviewer(boolean isReviewer) {
+        this.reviewer = isReviewer;
+        return this;
     }
 }

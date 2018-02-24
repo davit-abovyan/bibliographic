@@ -2,7 +2,6 @@ package am.bibliographic.dao.impl;
 
 import am.bibliographic.dao.Person;
 import am.bibliographic.dao.impl.mapper.PersonRowMapper;
-import am.bibliographic.entity.Entity;
 import am.bibliographic.entity.PersonEntity;
 import am.bibliographic.exception.NoSuchRecordToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +40,7 @@ public class PersonImpl extends NamedParameterJdbcDaoSupport implements Person {
             ps.setString(4, entity.getNameFinalArm());
             ps.setString(5, entity.getNameFinalRus());
             ps.setString(6, entity.getNameFinalEng());
-            ps.setInt(7, entity.isReviewState() ? 1 : 0);
+            ps.setInt(7, entity.isInReviewState() ? 1 : 0);
             return ps;
         },keyHolder);
 
@@ -86,7 +85,7 @@ public class PersonImpl extends NamedParameterJdbcDaoSupport implements Person {
             ps.setString(4, entity.getNameFinalArm());
             ps.setString(5, entity.getNameFinalRus());
             ps.setString(6, entity.getNameFinalEng());
-            ps.setInt(7, entity.isReviewState() ? 1 : 0);
+            ps.setInt(7, entity.isInReviewState() ? 1 : 0);
             ps.setInt(8, entity.getId());
             return ps;
         });
