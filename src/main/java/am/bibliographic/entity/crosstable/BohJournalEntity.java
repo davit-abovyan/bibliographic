@@ -1,6 +1,8 @@
-package am.bibliographic.entity;
+package am.bibliographic.entity.crosstable;
 
-public class BohJournalEntity implements MultyIdEntity{
+import am.bibliographic.entity.MultyIdEntity;
+
+public class BohJournalEntity implements MultyIdEntity {
 
     private int journalId;
     private int bohId;

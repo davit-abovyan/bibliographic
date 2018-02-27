@@ -2,6 +2,7 @@ package am.bibliographic.api.v1.controller;
 
 import am.bibliographic.api.v1.APIController;
 import am.bibliographic.entity.BOHEntity;
+import am.bibliographic.entity.crosstable.BohJournalEntity;
 import am.bibliographic.service.BOHService;
 import am.bibliographic.service.BohJournalService;
 import com.google.gson.Gson;
@@ -15,7 +16,8 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/api/v1.0/boh", produces = MediaType.APPLICATION_JSON_VALUE )
+@RequestMapping(value = "/api/v1.0/boh",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class APIBOHController extends APIController {
 
     private BOHService bohService;
@@ -32,13 +34,13 @@ public class APIBOHController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
-    public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
+    public ResponseEntity<String> getById(@PathVariable int ID){
         Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(bohService.get(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public ResponseEntity<String> getAll(HttpSession session){
+    public ResponseEntity<String> getAll(){
         Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(bohService.getAll()), HttpStatus.OK);
     }
@@ -50,36 +52,30 @@ public class APIBOHController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    public ResponseEntity<String> add(HttpSession session,
-                                  @RequestParam("name") String name){
-        BOHEntity object = new BOHEntity(name);
+    public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
+        gson = new Gson();
+        BOHEntity object = gson.fromJson(json, BOHEntity.class);
         bohService.add(object);
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{ID}")
-    public ResponseEntity<String> edit(HttpSession session,
-                                  @PathVariable int ID,
-                                 @RequestParam("name") String name){
-        BOHEntity object = new BOHEntity(name);
-        object.setId(ID);
+    @RequestMapping(method = RequestMethod.PUT, value = "/")
+    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+        gson = new Gson();
+        BOHEntity object = gson.fromJson(json, BOHEntity.class);
         bohService.update(object);
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/journal/{ID}")
-    public ResponseEntity<String> updateBOHs(HttpSession session,
-                                       @PathVariable int ID,
-                                       @RequestParam(value= "bohId[]") int[] bohId){
-        bohJournalService.updateByJournal(ID, bohId);
+    @RequestMapping(method = RequestMethod.PUT, value = "/journal/")
+    public ResponseEntity<String> updateBOHs(@RequestBody String json){
+        gson = new Gson();
+        bohJournalService.updateByJournal(gson.fromJson(json, BohJournalEntity[].class));
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{ID}")
-    public ResponseEntity<String> remove(HttpSession session,
-                                     @PathVariable int ID){
+    public ResponseEntity<String> remove(HttpSession session, @PathVariable int ID){
         bohService.remove(ID);
         return new ResponseEntity<>(HttpStatus.OK);
     }

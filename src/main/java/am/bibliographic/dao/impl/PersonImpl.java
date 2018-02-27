@@ -77,7 +77,7 @@ public class PersonImpl extends NamedParameterJdbcDaoSupport implements Person {
         final String query = "UPDATE person SET name_initial_arm = ?, name_initial_rus = ?, name_initial_eng = ?," +
                 " name_final_arm = ?, name_final_rus = ?, name_final_eng = ?, review_state = ? " +
                 " WHERE id = ? ";
-        getJdbcTemplate().update( connection -> {
+        int result = getJdbcTemplate().update( connection -> {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, entity.getNameInitialArm());
             ps.setString(2, entity.getNameInitialRus());
@@ -89,6 +89,7 @@ public class PersonImpl extends NamedParameterJdbcDaoSupport implements Person {
             ps.setInt(8, entity.getId());
             return ps;
         });
+        if(result != 1) throw new NoSuchRecordToRemove("Edit for Person with id "+entity.getId()+" failed.");
     }
 
     /**

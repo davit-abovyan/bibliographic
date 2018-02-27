@@ -2,6 +2,7 @@ package am.bibliographic.dao;
 
 import am.bibliographic.BaseIntegrationTest;
 import am.bibliographic.entity.*;
+import am.bibliographic.entity.crosstable.BohJournalEntity;
 import am.bibliographic.util.Pair;
 import org.junit.After;
 import org.junit.Before;

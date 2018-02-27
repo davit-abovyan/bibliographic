@@ -2,6 +2,7 @@ package am.bibliographic.entity;
 
 import am.bibliographic.constants.Country;
 import am.bibliographic.constants.Language;
+import am.bibliographic.exception.RequiredFielfMissing;
 
 public class JournalEntity implements IdEntity{
 
@@ -48,10 +49,14 @@ public class JournalEntity implements IdEntity{
     public JournalEntity(int id, String code, int operatorId, String nameArm, String nameRus, String nameEng,
                          String fullNameArm, String fullNameRus, String fullNameEng, String ISSNPrint, String ISBN,
                          String founderArm, String publisherArm, String publisherRus, String publisherEng, String phone,
-                         String fax, String email, String website, Country country, String city, String address,
+                         String fax, String email, String website, String country, String city, String address,
                          int frequency, int language, String journalCategory, boolean reviewed, boolean inProgress,
                          String startYear, int editor, String descriptionArm, String descriptionRus, String descriptionEng,
                          int scienceFieldId, String cover, boolean type, int indexedLibraries) {
+
+        if(hasRequiredObjects(code, nameArm, nameRus, nameEng, fullNameArm, fullNameRus, fullNameEng, founderArm, country) ||
+                hasRequiredIndexed(operatorId, scienceFieldId))
+            throw new RequiredFielfMissing();
         this.id = id;
         this.code = code;
         this.operatorId = operatorId;
@@ -71,7 +76,7 @@ public class JournalEntity implements IdEntity{
         this.fax = fax;
         this.email = email;
         this.website = website;
-        this.country = country;
+        this.country = "".equals(country) ? Country.ARM : Country.valueOf(country);
         this.city = city;
         this.address = address;
         this.frequency = frequency;
@@ -274,8 +279,8 @@ public class JournalEntity implements IdEntity{
         return country;
     }
 
-    public JournalEntity setCountry(Country country) {
-        this.country = country;
+    public JournalEntity setCountry(String country) {
+        this.country = "".equals(country) ? Country.ARM : Country.valueOf(country);
         return this;
     }
 

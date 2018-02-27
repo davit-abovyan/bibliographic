@@ -1,5 +1,6 @@
 package am.bibliographic.exception;
 
+import com.google.gson.JsonSyntaxException;
 import org.apache.log4j.Logger;
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -19,7 +20,7 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     @ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class })
     protected ResponseEntity<Object> handleConflict(RuntimeException ex, WebRequest request) {
         return handleExceptionInternal(ex, "Incorrect argument values provided",
-                new HttpHeaders(), HttpStatus.CONFLICT, request);
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 
     @ExceptionHandler(value = DuplicateKeyException.class )
@@ -42,5 +43,19 @@ public class RestResponseEntityExceptionHandler extends ResponseEntityExceptionH
     protected ResponseEntity<Object> emptyGetResult(EmptyResultDataAccessException ex, WebRequest request) {
         return handleExceptionInternal(ex, "{}",
                 new HttpHeaders(), HttpStatus.OK, request);
+    }
+
+    @ExceptionHandler(value = JsonSyntaxException.class )
+    protected ResponseEntity<Object> wrongJsonSyntax(JsonSyntaxException ex, WebRequest request) {
+        return handleExceptionInternal(ex, "There is syntax error in your provided json. Please check API documentation",
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
+    }
+
+    @ExceptionHandler(value = RequiredFielfMissing.class )
+    protected ResponseEntity<Object> creatingObjectWithMissingFields(RequiredFielfMissing ex, WebRequest request) {
+        String bodyOfResponse = ex.getMessage();
+        log.warn(ex.getMessage());
+        return handleExceptionInternal(ex, bodyOfResponse,
+                new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
     }
 }

@@ -1,8 +1,7 @@
 package am.bibliographic.dao;
 
-import am.bibliographic.entity.BohJournalEntity;
+import am.bibliographic.entity.crosstable.BohJournalEntity;
 import am.bibliographic.entity.Entity;
-import jdk.nashorn.internal.runtime.regexp.joni.constants.EncloseType;
 
 import java.util.List;
 

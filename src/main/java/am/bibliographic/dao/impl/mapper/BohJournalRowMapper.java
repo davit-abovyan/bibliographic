@@ -1,6 +1,6 @@
 package am.bibliographic.dao.impl.mapper;
 
-import am.bibliographic.entity.BohJournalEntity;
+import am.bibliographic.entity.crosstable.BohJournalEntity;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

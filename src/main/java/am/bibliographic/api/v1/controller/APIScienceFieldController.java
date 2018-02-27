@@ -14,7 +14,8 @@ import javax.servlet.http.HttpSession;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping(value = "/api/v1.0/sciencefield", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/v1.0/sciencefield",
+        produces = MediaType.APPLICATION_JSON_UTF8_VALUE, consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
 public class APIScienceFieldController extends APIController {
 
     private ScienceFieldService scienceFieldService;
@@ -37,26 +38,18 @@ public class APIScienceFieldController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    public ResponseEntity<String> add(HttpSession session,
-                                      @RequestParam("nameArm") String nameArm,
-                                      @RequestParam("nameRus") String nameRus,
-                                      @RequestParam("nameEng") String nameEng){
-        ScienceFieldEntity object = new ScienceFieldEntity(nameArm, nameRus, nameEng);
+    public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
+        gson = new Gson();
+        ScienceFieldEntity object = gson.fromJson(json, ScienceFieldEntity.class);
         scienceFieldService.add(object);
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{ID}")
-    public ResponseEntity<String> edit(HttpSession session,
-                                       @PathVariable int ID,
-                                       @RequestParam("nameArm") String nameArm,
-                                       @RequestParam("nameRus") String nameRus,
-                                       @RequestParam("nameEng") String nameEng){
-        ScienceFieldEntity object = new ScienceFieldEntity(nameArm, nameRus, nameEng);
-        object.setId(ID);
+    @RequestMapping(method = RequestMethod.PUT, value = "/")
+    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+        gson = new Gson();
+        ScienceFieldEntity object = gson.fromJson(json, ScienceFieldEntity.class);
         scienceFieldService.update(object);
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
     }
 

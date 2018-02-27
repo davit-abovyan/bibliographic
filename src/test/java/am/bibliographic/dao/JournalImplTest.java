@@ -170,7 +170,7 @@ public class JournalImplTest extends BaseIntegrationTest {
             .setFax(fax)
             .setEmail(email)
             .setWebsite(website)
-            .setCountry(country)
+            .setCountry(country.name())
             .setCity(city)
             .setAddress(address)
             .setFrequency(frequency)

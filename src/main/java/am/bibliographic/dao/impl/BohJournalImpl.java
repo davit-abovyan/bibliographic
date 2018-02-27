@@ -2,18 +2,14 @@ package am.bibliographic.dao.impl;
 
 import am.bibliographic.dao.BohJournal;
 import am.bibliographic.dao.impl.mapper.BohJournalRowMapper;
-import am.bibliographic.entity.BohJournalEntity;
+import am.bibliographic.entity.crosstable.BohJournalEntity;
 import am.bibliographic.entity.Entity;
-import am.bibliographic.exception.NoSuchRecordToRemove;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcDaoSupport;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Component;
 
 import javax.sql.DataSource;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
 import java.util.List;
 
 @Component
@@ -25,7 +21,7 @@ public class BohJournalImpl extends NamedParameterJdbcDaoSupport implements BohJ
     }
 
     /**
-     * @see BohJournal#create(am.bibliographic.entity.BohJournalEntity)
+     * @see BohJournal#create(BohJournalEntity)
      */
     @Override
     public boolean create(BohJournalEntity entity) {

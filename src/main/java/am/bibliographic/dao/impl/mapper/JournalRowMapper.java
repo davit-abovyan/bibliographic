@@ -31,7 +31,7 @@ public class JournalRowMapper implements RowMapper<JournalEntity> {
         journalEntity.setFax(resultSet.getString("fax"));
         journalEntity.setEmail(resultSet.getString("email"));
         journalEntity.setWebsite(resultSet.getString("website"));
-        journalEntity.setCountry(Country.valueOf(resultSet.getString("country").toUpperCase()));
+        journalEntity.setCountry(resultSet.getString("country").toUpperCase());
         journalEntity.setCity(resultSet.getString("city"));
         journalEntity.setAddress(resultSet.getString("address"));
         journalEntity.setFrequency(resultSet.getInt("frequency"));
