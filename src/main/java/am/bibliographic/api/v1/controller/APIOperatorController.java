@@ -42,7 +42,7 @@ public class APIOperatorController extends APIController {
         gson = new Gson();
         OperatorEntity object = gson.fromJson(json, OperatorEntity.class);
         operatorService.add(object);
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")

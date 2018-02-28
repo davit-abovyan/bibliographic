@@ -59,7 +59,7 @@ CREATE TABLE journal (
   fax VARCHAR(40),
   email VARCHAR(50),
   website VARCHAR(255),
-  country ENUM('ARM'),
+  country ENUM('ARM') DEFAULT 'ARM',
   city VARCHAR(50),
   address VARCHAR(255),
   frequency SMALLINT,

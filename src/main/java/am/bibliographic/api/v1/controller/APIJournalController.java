@@ -53,7 +53,7 @@ public class APIJournalController extends APIController {
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
     }
 
-    @RequestMapping(method = RequestMethod.PUT, value = "/{ID}")
+    @RequestMapping(method = RequestMethod.PUT, value = "/")
     public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
         gson = new Gson();
         JournalEntity object = gson.fromJson(json, JournalEntity.class);
