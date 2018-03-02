@@ -27,19 +27,16 @@ public class APIScienceFieldController extends APIController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
     public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(scienceFieldService.get(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public ResponseEntity<String> getAll(HttpSession session){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(scienceFieldService.getAll()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         ScienceFieldEntity object = gson.fromJson(json, ScienceFieldEntity.class);
         scienceFieldService.add(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
@@ -47,7 +44,6 @@ public class APIScienceFieldController extends APIController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
     public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         ScienceFieldEntity object = gson.fromJson(json, ScienceFieldEntity.class);
         scienceFieldService.update(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);

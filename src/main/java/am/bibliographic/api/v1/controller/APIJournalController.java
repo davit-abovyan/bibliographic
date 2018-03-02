@@ -35,19 +35,16 @@ public class APIJournalController extends APIController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
     public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(journalService.get(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public ResponseEntity<String> getAll(HttpSession session){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(journalService.getAll()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         JournalEntity object = gson.fromJson(json, JournalEntity.class);
         journalService.add(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
@@ -55,7 +52,6 @@ public class APIJournalController extends APIController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
     public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         JournalEntity object = gson.fromJson(json, JournalEntity.class);
         journalService.update(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);

@@ -35,25 +35,21 @@ public class APIBOHController extends APIController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
     public ResponseEntity<String> getById(@PathVariable int ID){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(bohService.get(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public ResponseEntity<String> getAll(){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(bohService.getAll()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/journal/{ID}")
     public ResponseEntity<String> getAllByJournal(HttpSession session, @PathVariable int ID){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(bohJournalService.getAllByJournal(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         BOHEntity object = gson.fromJson(json, BOHEntity.class);
         bohService.add(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
@@ -61,7 +57,6 @@ public class APIBOHController extends APIController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
     public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         BOHEntity object = gson.fromJson(json, BOHEntity.class);
         bohService.update(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
@@ -69,7 +64,6 @@ public class APIBOHController extends APIController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/journal/")
     public ResponseEntity<String> updateBOHs(@RequestBody String json){
-        gson = new Gson();
         bohJournalService.updateByJournal(gson.fromJson(json, BohJournalEntity[].class));
         return new ResponseEntity<>(HttpStatus.OK);
     }

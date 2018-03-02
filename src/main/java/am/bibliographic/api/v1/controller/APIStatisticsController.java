@@ -28,19 +28,16 @@ public class APIStatisticsController extends APIController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
     public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(statisticsService.get(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public ResponseEntity<String> getAll(HttpSession session){
-        Gson gson = new Gson();
         return new ResponseEntity<>(gson.toJson(statisticsService.getAll()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
     public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         StatisticsEntity object = gson.fromJson(json, StatisticsEntity.class);
 
         StatisticsEntity beforeUpdate = statisticsService.get(object.getId());

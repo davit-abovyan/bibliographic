@@ -27,19 +27,16 @@ public class APIOperatorController extends APIController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
     public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        gson = new Gson();
         return new ResponseEntity<>(gson.toJson(operatorService.get(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public ResponseEntity<String> getAll(HttpSession session){
-        gson = new Gson();
         return new ResponseEntity<>(gson.toJson(operatorService.getAll()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         OperatorEntity object = gson.fromJson(json, OperatorEntity.class);
         operatorService.add(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
@@ -47,7 +44,6 @@ public class APIOperatorController extends APIController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
     public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         OperatorEntity object = gson.fromJson(json, OperatorEntity.class);
         operatorService.update(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);

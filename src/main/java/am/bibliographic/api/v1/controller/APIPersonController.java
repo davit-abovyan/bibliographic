@@ -27,19 +27,16 @@ public class APIPersonController extends APIController {
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
     public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        gson = new Gson();
         return new ResponseEntity<>(gson.toJson(personService.get(ID)), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
     public ResponseEntity<String> getAll(HttpSession session){
-        gson = new Gson();
         return new ResponseEntity<>(gson.toJson(personService.getAll()), HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
     public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         PersonEntity object = gson.fromJson(json, PersonEntity.class);
         personService.add(object);
         return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
@@ -47,7 +44,6 @@ public class APIPersonController extends APIController {
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
     public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
-        gson = new Gson();
         PersonEntity object = gson.fromJson(json, PersonEntity.class);
         personService.update(object);
         return new ResponseEntity<>(HttpStatus.OK);
