@@ -15,19 +15,6 @@ public class PersonEntity implements IdEntity{
 
     public PersonEntity() {}
 
-    // full constructor
-    public PersonEntity(int id, String nameInitialArm, String nameInitialRus, String nameInitialEng,
-                        String nameFinalArm, String nameFinalRus, String nameFinalEng, boolean reviewState) {
-        this.id = id;
-        this.nameInitialArm = nameInitialArm;
-        this.nameInitialRus = nameInitialRus;
-        this.nameInitialEng = nameInitialEng;
-        this.nameFinalArm = nameFinalArm;
-        this.nameFinalRus = nameFinalRus;
-        this.nameFinalEng = nameFinalEng;
-        this.inReviewState = reviewState;
-    }
-
     public int getId() {
         return id;
     }

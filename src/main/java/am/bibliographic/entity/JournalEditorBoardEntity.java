@@ -10,16 +10,6 @@ public class JournalEditorBoardEntity implements MultyIdEntity {
 
     public JournalEditorBoardEntity() {}
 
-    // full constructor
-    public JournalEditorBoardEntity(String journalId, int editorId, String editorPositionArm, String editorPositionRus,
-                                    String editorPositionEng) {
-        this.journalId = journalId;
-        this.editorId = editorId;
-        this.editorPositionArm = editorPositionArm;
-        this.editorPositionRus = editorPositionRus;
-        this.editorPositionEng = editorPositionEng;
-    }
-
     public String getJournalId() {
         return journalId;
     }

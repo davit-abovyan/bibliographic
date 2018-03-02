@@ -9,14 +9,6 @@ public class ScienceFieldEntity implements IdEntity {
 
     public ScienceFieldEntity() {}
 
-    // full constructor
-    public ScienceFieldEntity(int id, String nameArm, String nameRus, String nameEng) {
-        this.id = id;
-        this.nameArm = nameArm;
-        this.nameRus = nameRus;
-        this.nameEng = nameEng;
-    }
-
     public int getId() {
         return id;
     }

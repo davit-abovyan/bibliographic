@@ -9,12 +9,6 @@ public class BohJournalEntity implements MultyIdEntity {
 
     public BohJournalEntity() {}
 
-    // full constructor
-    public BohJournalEntity(int bohId, int journalId) {
-        this.bohId = bohId;
-        this.journalId = journalId;
-    }
-
     public int getJournalId() {
         return journalId;
     }

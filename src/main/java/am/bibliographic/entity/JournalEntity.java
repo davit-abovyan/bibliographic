@@ -45,56 +45,6 @@ public class JournalEntity implements IdEntity{
 
     public JournalEntity() {}
 
-    // full constructor
-    public JournalEntity(int id, String code, int operatorId, String nameArm, String nameRus, String nameEng,
-                         String fullNameArm, String fullNameRus, String fullNameEng, String ISSNPrint, String ISBN,
-                         String founderArm, String publisherArm, String publisherRus, String publisherEng, String phone,
-                         String fax, String email, String website, String country, String city, String address,
-                         int frequency, int language, String journalCategory, boolean reviewed, boolean inProgress,
-                         String startYear, int editor, String descriptionArm, String descriptionRus, String descriptionEng,
-                         int scienceFieldId, String cover, boolean type, int indexedLibraries) {
-
-        if(hasRequiredObjects(code, nameArm, nameRus, nameEng, fullNameArm, fullNameRus, fullNameEng, founderArm, country) ||
-                hasRequiredIndexed(operatorId, scienceFieldId))
-            throw new RequiredFielfMissing();
-        this.id = id;
-        this.code = code;
-        this.operatorId = operatorId;
-        this.nameArm = nameArm;
-        this.nameRus = nameRus;
-        this.nameEng = nameEng;
-        this.fullNameArm = fullNameArm;
-        this.fullNameRus = fullNameRus;
-        this.fullNameEng = fullNameEng;
-        this.ISSNPrint = ISSNPrint;
-        this.ISBN = ISBN;
-        this.founderArm = founderArm;
-        this.publisherArm = publisherArm;
-        this.publisherRus = publisherRus;
-        this.publisherEng = publisherEng;
-        this.phone = phone;
-        this.fax = fax;
-        this.email = email;
-        this.website = website;
-        this.country = "".equals(country) ? Country.ARM : Country.valueOf(country);
-        this.city = city;
-        this.address = address;
-        this.frequency = frequency;
-        this.language = language;
-        this.journalCategory = journalCategory;
-        this.reviewed = reviewed;
-        this.inProgress = inProgress;
-        this.startYear = startYear;
-        this.editor = editor;
-        this.descriptionArm = descriptionArm;
-        this.descriptionRus = descriptionRus;
-        this.descriptionEng = descriptionEng;
-        this.scienceFieldId = scienceFieldId;
-        this.cover = cover;
-        this.type = type;
-        this.indexedLibraries = indexedLibraries;
-    }
-
     public int getIndexedLibraries() {
         return indexedLibraries;
     }

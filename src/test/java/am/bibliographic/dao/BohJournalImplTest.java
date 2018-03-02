@@ -28,7 +28,7 @@ public class BohJournalImplTest extends BaseIntegrationTest {
         person = createPersona("", true);
         scienceField = createScienceField("");
         journal = createJournal("ARM-111", "", false, 0, operator, person, scienceField);
-        bohJournalEntity = new BohJournalEntity(boh.getId(), journal.getId());
+        bohJournalEntity = new BohJournalEntity().setBohId(boh.getId()).setJournalId(journal.getId());
         bohJournal.create(bohJournalEntity);
         autoDelete.push(new Pair<>(bohJournal, bohJournalEntity));
     }

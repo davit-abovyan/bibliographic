@@ -7,12 +7,6 @@ public class BOHEntity implements IdEntity{
 
     public BOHEntity() {}
 
-    // full constructor
-    public BOHEntity(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
-
     public int getId() {
         return id;
     }
