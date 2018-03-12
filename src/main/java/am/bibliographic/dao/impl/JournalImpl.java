@@ -99,7 +99,7 @@ public class JournalImpl extends NamedParameterJdbcDaoSupport implements Journal
      */
     @Override
     public List<JournalEntity> getAll() {
-        final String query = "SELECT * FROM journal";
+        final String query = "SELECT * FROM journal ORDER BY id DESC ";
         return getJdbcTemplate().query(query, new JournalRowMapper());
     }
 

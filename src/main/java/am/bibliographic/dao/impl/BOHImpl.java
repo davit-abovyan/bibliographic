@@ -62,7 +62,7 @@ public class BOHImpl extends NamedParameterJdbcDaoSupport implements BOH {
      */
     @Override
     public List<BOHEntity> getAll() {
-        final String query = "SELECT * FROM boh";
+        final String query = "SELECT * FROM boh ORDER BY id DESC ";
         return getJdbcTemplate().query(query, new BOHRowMapper());
     }
 

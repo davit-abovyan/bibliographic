@@ -69,7 +69,7 @@ public class StatisticsImpl extends NamedParameterJdbcDaoSupport implements Stat
      */
     @Override
     public List<StatisticsEntity> getAll() {
-        final String query = "SELECT * FROM statistics";
+        final String query = "SELECT * FROM statistics ORDER BY journal_id DESC ";
         return getJdbcTemplate().query(query, new StatisticsRowMapper());
     }
 

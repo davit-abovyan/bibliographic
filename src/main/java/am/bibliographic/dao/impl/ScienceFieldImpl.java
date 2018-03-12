@@ -63,7 +63,7 @@ public class ScienceFieldImpl extends NamedParameterJdbcDaoSupport implements Sc
      */
     @Override
     public List<ScienceFieldEntity> getAll() {
-        final String query = "SELECT * FROM science_field";
+        final String query = "SELECT * FROM science_field ORDER BY id DESC ";
         return getJdbcTemplate().query(query, new ScienceFieldRowMapper());
     }
 

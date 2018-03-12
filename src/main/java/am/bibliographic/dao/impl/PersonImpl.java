@@ -65,7 +65,7 @@ public class PersonImpl extends NamedParameterJdbcDaoSupport implements Person {
      */
     @Override
     public List<PersonEntity> getAll() {
-        final String query = "SELECT * FROM person";
+        final String query = "SELECT * FROM person ORDER BY id DESC ";
         return getJdbcTemplate().query(query, new PersonRowMapper());
     }
 

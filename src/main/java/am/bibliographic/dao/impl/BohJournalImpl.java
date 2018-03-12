@@ -40,7 +40,7 @@ public class BohJournalImpl extends NamedParameterJdbcDaoSupport implements BohJ
      */
     @Override
     public List<BohJournalEntity> getByJournal(int journalId) {
-        final String query = "SELECT * FROM boh_journal WHERE journal_id = ? ";
+        final String query = "SELECT * FROM boh_journal WHERE journal_id = ? ORDER BY boh_id DESC ";
         return getJdbcTemplate().query(query,new Object[]{journalId}, new BohJournalRowMapper());
     }
 
@@ -49,7 +49,7 @@ public class BohJournalImpl extends NamedParameterJdbcDaoSupport implements BohJ
      */
     @Override
     public List<BohJournalEntity> getByBoh(int bohId) {
-        final String query = "SELECT * FROM boh_journal WHERE boh_id = ? ";
+        final String query = "SELECT * FROM boh_journal WHERE boh_id = ? ORDER BY journal_id DESC ";
         return getJdbcTemplate().query(query,new Object[]{bohId}, new BohJournalRowMapper());
     }
 

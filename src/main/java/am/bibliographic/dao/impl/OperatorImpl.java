@@ -61,7 +61,7 @@ public class OperatorImpl extends NamedParameterJdbcDaoSupport implements Operat
      */
     @Override
     public List<OperatorEntity> getAll() {
-        final String query = "SELECT * FROM operator";
+        final String query = "SELECT * FROM operator ORDER BY id DESC ";
         return getJdbcTemplate().query(query, new OperatorRowMapper());
     }
 
