@@ -27,17 +27,17 @@ public class APIStatisticsController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
-    public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        return new ResponseEntity<>(gson.toJson(statisticsService.get(ID)), HttpStatus.OK);
+    public String getById(HttpSession session, @PathVariable int ID){
+        return gson.toJson(statisticsService.get(ID));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public ResponseEntity<String> getAll(HttpSession session){
-        return new ResponseEntity<>(gson.toJson(statisticsService.getAll()), HttpStatus.OK);
+    public String getAll(HttpSession session){
+        return gson.toJson(statisticsService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
-    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+    public String edit(HttpSession session, @RequestBody String json){
         StatisticsEntity object = gson.fromJson(json, StatisticsEntity.class);
 
         StatisticsEntity beforeUpdate = statisticsService.get(object.getId());
@@ -51,12 +51,11 @@ public class APIStatisticsController extends APIController {
                 .setnSelfciteAINC(beforeUpdate.getnSelfciteAINC()+object.getnSelfciteAINC());
 
         statisticsService.update(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{ID}")
-    public ResponseEntity<String> remove(HttpSession session, @PathVariable int ID){
+    public void remove(HttpSession session, @PathVariable int ID){
         statisticsService.remove(ID);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

@@ -34,33 +34,31 @@ public class APIJournalController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
-    public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        return new ResponseEntity<>(gson.toJson(journalService.get(ID)), HttpStatus.OK);
+    public String getById(HttpSession session, @PathVariable int ID){
+        return gson.toJson(journalService.get(ID));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public ResponseEntity<String> getAll(HttpSession session){
-        return new ResponseEntity<>(gson.toJson(journalService.getAll()), HttpStatus.OK);
+    public String getAll(HttpSession session){
+        return gson.toJson(journalService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
+    public String add(HttpSession session, @RequestBody String json){
         JournalEntity object = gson.fromJson(json, JournalEntity.class);
         journalService.add(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
-    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+    public String edit(HttpSession session, @RequestBody String json){
         JournalEntity object = gson.fromJson(json, JournalEntity.class);
         journalService.update(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{ID}")
-    public ResponseEntity<String> remove(HttpSession session,
-                                         @PathVariable int ID){
+    public void remove(HttpSession session, @PathVariable int ID){
         journalService.remove(ID);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

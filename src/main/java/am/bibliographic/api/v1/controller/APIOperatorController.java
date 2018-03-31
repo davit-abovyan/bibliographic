@@ -26,32 +26,31 @@ public class APIOperatorController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
-    public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        return new ResponseEntity<>(gson.toJson(operatorService.get(ID)), HttpStatus.OK);
+    public String getById(HttpSession session, @PathVariable int ID){
+        return gson.toJson(operatorService.get(ID));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public ResponseEntity<String> getAll(HttpSession session){
-        return new ResponseEntity<>(gson.toJson(operatorService.getAll()), HttpStatus.OK);
+    public String getAll(HttpSession session){
+        return gson.toJson(operatorService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
+    public String add(HttpSession session, @RequestBody String json){
         OperatorEntity object = gson.fromJson(json, OperatorEntity.class);
         operatorService.add(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
-    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+    public String edit(HttpSession session, @RequestBody String json){
         OperatorEntity object = gson.fromJson(json, OperatorEntity.class);
         operatorService.update(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{ID}")
-    public ResponseEntity remove(HttpSession session, @PathVariable int ID){
+    public void remove(HttpSession session, @PathVariable int ID){
         operatorService.remove(ID);
-        return new ResponseEntity(HttpStatus.OK);
     }
 }

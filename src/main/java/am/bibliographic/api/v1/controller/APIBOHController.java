@@ -34,43 +34,41 @@ public class APIBOHController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
-    public ResponseEntity<String> getById(@PathVariable int ID){
-        return new ResponseEntity<>(gson.toJson(bohService.get(ID)), HttpStatus.OK);
+    public String getById(@PathVariable int ID){
+        return gson.toJson(bohService.get(ID));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public ResponseEntity<String> getAll(){
-        return new ResponseEntity<>(gson.toJson(bohService.getAll()), HttpStatus.OK);
+    public String getAll(){
+        return gson.toJson(bohService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search/journal/{ID}")
-    public ResponseEntity<String> getAllByJournal(HttpSession session, @PathVariable int ID){
-        return new ResponseEntity<>(gson.toJson(bohJournalService.getAllByJournal(ID)), HttpStatus.OK);
+    public String getAllByJournal(HttpSession session, @PathVariable int ID){
+        return gson.toJson(bohJournalService.getAllByJournal(ID));
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
+    public String add(HttpSession session, @RequestBody String json){
         BOHEntity object = gson.fromJson(json, BOHEntity.class);
         bohService.add(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
-    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+    public String edit(HttpSession session, @RequestBody String json){
         BOHEntity object = gson.fromJson(json, BOHEntity.class);
         bohService.update(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/journal/")
-    public ResponseEntity<String> updateBOHs(@RequestBody String json){
+    public void updateBOHs(@RequestBody String json){
         bohJournalService.updateByJournal(gson.fromJson(json, BohJournalEntity[].class));
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{ID}")
-    public ResponseEntity<String> remove(HttpSession session, @PathVariable int ID){
+    public void remove(HttpSession session, @PathVariable int ID){
         bohService.remove(ID);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

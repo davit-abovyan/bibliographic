@@ -26,32 +26,30 @@ public class APIPersonController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
-    public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        return new ResponseEntity<>(gson.toJson(personService.get(ID)), HttpStatus.OK);
+    public String getById(HttpSession session, @PathVariable int ID){
+        return gson.toJson(personService.get(ID));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public ResponseEntity<String> getAll(HttpSession session){
-        return new ResponseEntity<>(gson.toJson(personService.getAll()), HttpStatus.OK);
+    public String getAll(HttpSession session){
+        return gson.toJson(personService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
+    public String add(HttpSession session, @RequestBody String json){
         PersonEntity object = gson.fromJson(json, PersonEntity.class);
         personService.add(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
-    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+    public void edit(HttpSession session, @RequestBody String json){
         PersonEntity object = gson.fromJson(json, PersonEntity.class);
         personService.update(object);
-        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{ID}")
-    public ResponseEntity remove(HttpSession session, @PathVariable int ID){
+    public void remove(HttpSession session, @PathVariable int ID){
         personService.remove(ID);
-        return new ResponseEntity(HttpStatus.OK);
     }
 }

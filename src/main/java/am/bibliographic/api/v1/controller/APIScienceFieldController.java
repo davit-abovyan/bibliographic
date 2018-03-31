@@ -26,33 +26,31 @@ public class APIScienceFieldController extends APIController {
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/{ID}")
-    public ResponseEntity<String> getById(HttpSession session, @PathVariable int ID){
-        return new ResponseEntity<>(gson.toJson(scienceFieldService.get(ID)), HttpStatus.OK);
+    public String getById(HttpSession session, @PathVariable int ID){
+        return gson.toJson(scienceFieldService.get(ID));
     }
 
     @RequestMapping(method = RequestMethod.GET, value = "/search")
-    public ResponseEntity<String> getAll(HttpSession session){
-        return new ResponseEntity<>(gson.toJson(scienceFieldService.getAll()), HttpStatus.OK);
+    public String getAll(HttpSession session){
+        return gson.toJson(scienceFieldService.getAll());
     }
 
     @RequestMapping(method = RequestMethod.POST, value = "/")
-    public ResponseEntity<String> add(HttpSession session, @RequestBody String json){
+    public String add(HttpSession session, @RequestBody String json){
         ScienceFieldEntity object = gson.fromJson(json, ScienceFieldEntity.class);
         scienceFieldService.add(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.PUT, value = "/")
-    public ResponseEntity<String> edit(HttpSession session, @RequestBody String json){
+    public String edit(HttpSession session, @RequestBody String json){
         ScienceFieldEntity object = gson.fromJson(json, ScienceFieldEntity.class);
         scienceFieldService.update(object);
-        return new ResponseEntity<>(gson.toJson(object), HttpStatus.OK);
+        return gson.toJson(object);
     }
 
     @RequestMapping(method = RequestMethod.DELETE, value = "/{ID}")
-    public ResponseEntity remove(HttpSession session,
-                                 @PathVariable int ID){
+    public void remove(HttpSession session, @PathVariable int ID){
         scienceFieldService.remove(ID);
-        return new ResponseEntity(HttpStatus.OK);
     }
 }
