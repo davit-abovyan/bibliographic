@@ -1,4 +1,4 @@
-use bibliographic_test;
+use bibliographic;
 
 DROP TABLE IF EXISTS journal_editor_board;
 DROP TABLE IF EXISTS boh_journal;
@@ -75,7 +75,7 @@ CREATE TABLE journal (
   science_field_id SMALLINT NOT NULL ,
   cover VARCHAR(255) DEFAULT "0",
   type TINYINT(1) DEFAULT 0,
-  indexed_libraries SMALLINT DEFAULT 0,
+  indexed_libraries INT NOT NULL DEFAULT 0,
   CONSTRAINT operator_fk FOREIGN KEY (operator) REFERENCES operator(id),
   CONSTRAINT editor_fk FOREIGN KEY (editor) REFERENCES person(id),
   CONSTRAINT science_field_id_fk FOREIGN KEY (science_field_id) REFERENCES science_field(id)
