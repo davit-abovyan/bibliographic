@@ -30,7 +30,7 @@ public class BohJournalImplTest extends BaseIntegrationTest {
         journal = createJournal("ARM-111", "", false, 0, operator, person, scienceField);
         bohJournalEntity = new BohJournalEntity().setBohId(boh.getId()).setJournalId(journal.getId());
         bohJournal.create(bohJournalEntity);
-        autoDelete.push(new Pair<>(bohJournal, bohJournalEntity));
+//        autoDelete.push(new Pair<BaseDAO, IdEntity>(bohJournal, bohJournalEntity)); TODO consider IdEntity
     }
 
     @After

@@ -8,6 +8,7 @@ DROP TABLE IF EXISTS science_field;
 DROP TABLE IF EXISTS boh;
 DROP TABLE IF EXISTS person;
 DROP TABLE IF EXISTS operator;
+DROP TABLE IF EXISTS users;
 
 
 CREATE TABLE operator (
@@ -123,4 +124,11 @@ CREATE TABLE journal_editor_board(
   INDEX journal_editor_board_idx (journal_id, editor_id),
   CONSTRAINT editor_board_journal_id_fk FOREIGN KEY (journal_id) REFERENCES journal(id),
   CONSTRAINT editor_id_fk FOREIGN KEY (editor_id) REFERENCES person(id)
+);
+
+CREATE TABLE users (
+  username VARCHAR(255) PRIMARY KEY,
+  password VARCHAR(255) NOT NULL,
+  authority VARCHAR(255) NOT NULL DEFAULT "ROLE_USER",
+  enabled BOOLEAN DEFAULT FALSE
 );

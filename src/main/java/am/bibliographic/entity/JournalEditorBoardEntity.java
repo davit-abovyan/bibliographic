@@ -1,6 +1,6 @@
 package am.bibliographic.entity;
 
-public class JournalEditorBoardEntity implements MultyIdEntity {
+public class JournalEditorBoardEntity implements NoIdEntity {
 
     private String journalId;
     private int editorId;

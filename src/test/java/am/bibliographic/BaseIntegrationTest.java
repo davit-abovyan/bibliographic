@@ -16,7 +16,7 @@ import java.util.Stack;
  */
 @Ignore
 public class BaseIntegrationTest extends BaseTest {
-    protected Stack<Pair<BaseDAO, Entity>> autoDelete = new Stack<>();
+    protected Stack<Pair<BaseDAO, IdEntity>> autoDelete = new Stack<>();
 
     @Autowired
     protected JournalImpl journalImpl;
@@ -189,7 +189,7 @@ public class BaseIntegrationTest extends BaseTest {
 
     protected void doAutoDelete(){
         while (!autoDelete.empty()){
-            Pair<BaseDAO, Entity> pair = autoDelete.pop();
+            Pair<BaseDAO, IdEntity> pair = autoDelete.pop();
             if( pair.getSecond() instanceof IdEntity )
                 pair.getFirst().remove(pair.getSecond().getId());
             else

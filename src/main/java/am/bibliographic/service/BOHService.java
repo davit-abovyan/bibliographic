@@ -2,11 +2,7 @@ package am.bibliographic.service;
 
 import am.bibliographic.dao.BOH;
 import am.bibliographic.entity.BOHEntity;
-import am.bibliographic.exception.ServiceException;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DuplicateKeyException;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
