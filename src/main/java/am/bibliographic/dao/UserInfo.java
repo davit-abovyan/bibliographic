@@ -1,5 +1,6 @@
 package am.bibliographic.dao;
 
+import am.bibliographic.entity.Entity;
 import am.bibliographic.entity.UserEntity;
 
 import java.util.List;
@@ -26,6 +27,14 @@ public interface UserInfo extends BaseDAO{
     List<UserEntity> getAll();
 
     /**
+     * Login to system
+     * @param name username
+     * @param password user password
+     * @return true if credentials are true
+     */
+    boolean login(String name, String password);
+
+    /**
      * Update the record in user table with details of provided entity
      * @param entity the entity with details to be updated
      */
@@ -33,7 +42,7 @@ public interface UserInfo extends BaseDAO{
 
     /**
      * Removes the record from user table
-     * @param userName the id of entity to be removed
+     * @param entity the entity to be removed
      */
-    void remove(String userName);
+    void remove(Entity entity);
 }

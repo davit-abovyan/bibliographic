@@ -16,11 +16,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class AuthenticationService implements UserDetailsService {
     @Autowired
-    private UserInfoImpl userDAO;
+    private UserService user;
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        UserEntity userInfo = userDAO.read(username);
+        UserEntity userInfo = user.get(username);
         GrantedAuthority authority = new SimpleGrantedAuthority(userInfo.getRole());
         UserDetails userDetails = (UserDetails)new User(userInfo.getUsername(),
                 userInfo.getPassword(), Arrays.asList(authority));

@@ -1,5 +1,7 @@
 package am.bibliographic.entity;
 
+import java.util.Objects;
+
 public class UserEntity implements NoIdEntity{
 
     private String username;
@@ -43,5 +45,17 @@ public class UserEntity implements NoIdEntity{
     public UserEntity setEnabled(boolean enabled) {
         this.enabled = enabled;
         return this;
+    }
+
+    @Override
+    public boolean equals(Object object){
+        if(object == null) return false;
+        if(object == this) return true;
+        if(!(object instanceof UserEntity)) return false;
+        UserEntity that = (UserEntity) object;
+        return Objects.equals(username, that.getUsername()) &&
+                Objects.equals(password, that.getPassword()) &&
+                Objects.equals(role, that.getRole()) &&
+                Objects.equals(enabled, that.isEnabled());
     }
 }
