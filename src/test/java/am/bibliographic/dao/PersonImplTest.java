@@ -20,11 +20,7 @@ public class PersonImplTest extends BaseIntegrationTest {
 
     @After
     public void tearDown(){
-        try{
-            doAutoDelete();
-        } catch (Exception e){
-            fail("Entity removal failed. Detail: "+e.getMessage());
-        }
+        doAutoDelete();
     }
 
     @Test

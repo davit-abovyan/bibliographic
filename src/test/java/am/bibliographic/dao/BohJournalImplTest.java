@@ -30,16 +30,12 @@ public class BohJournalImplTest extends BaseIntegrationTest {
         journal = createJournal("ARM-111", "", false, 0, operator, person, scienceField);
         bohJournalEntity = new BohJournalEntity().setBohId(boh.getId()).setJournalId(journal.getId());
         bohJournal.create(bohJournalEntity);
-//        autoDelete.push(new Pair<BaseDAO, IdEntity>(bohJournal, bohJournalEntity)); TODO consider IdEntity
+        autoDelete.push(new Pair<BaseDAO, Entity>(bohJournal, bohJournalEntity)); //TODO consider IdEntity
     }
 
     @After
     public void tearDown(){
-        try{
-            doAutoDelete();
-        } catch (Exception e){
-            fail("Entity removal failed. Detail: "+e.getMessage());
-        }
+        doAutoDelete();
     }
 
     @Test

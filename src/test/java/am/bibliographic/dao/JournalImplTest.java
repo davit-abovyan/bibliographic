@@ -65,11 +65,7 @@ public class JournalImplTest extends BaseIntegrationTest {
 
     @After
     public void tearDown(){
-        try{
-            doAutoDelete();
-        } catch (Exception e){
-            fail("Entity removal. Detail: "+e.getMessage());
-        }
+        doAutoDelete();
     }
 
     @Test

@@ -11,17 +11,21 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Stack;
 
+import static org.junit.Assert.fail;
+
 /**
  * Base class for all integration tests
  */
 @Ignore
 public class BaseIntegrationTest extends BaseTest {
-    protected Stack<Pair<BaseDAO, IdEntity>> autoDelete = new Stack<>();
+    protected Stack<Pair<BaseDAO, Entity>> autoDelete = new Stack<>();
 
     @Autowired
     protected JournalImpl journalImpl;
     @Autowired
     protected OperatorImpl operatorImpl;
+    @Autowired
+    protected UserInfoImpl userInfoImpl;
     @Autowired
     protected PersonImpl personImpl;
     @Autowired
@@ -161,6 +165,16 @@ public class BaseIntegrationTest extends BaseTest {
         return operatorEntity;
     }
 
+    protected UserEntity createUser(String userName, String password, boolean isAdmin){
+        UserEntity userEntity = new UserEntity()
+                .setUsername(userName)
+                .setPassword(password)
+                .setRole(isAdmin ? "ROLE_ADMIN" : "ROLE_USER");
+        userInfoImpl.create(userEntity);
+        autoDelete.push(new Pair<>(userInfoImpl, userEntity));
+        return userEntity;
+    }
+
     protected StatisticsEntity createStatistics(int journalId, int start){
         StatisticsEntity statistics = new StatisticsEntity(journalId)
                 .setIF2010(start+100)
@@ -188,12 +202,16 @@ public class BaseIntegrationTest extends BaseTest {
     }
 
     protected void doAutoDelete(){
-        while (!autoDelete.empty()){
-            Pair<BaseDAO, IdEntity> pair = autoDelete.pop();
-            if( pair.getSecond() instanceof IdEntity )
-                pair.getFirst().remove(pair.getSecond().getId());
-            else
-                pair.getFirst().remove(pair.getSecond());
+        try {
+            while (!autoDelete.empty()){
+                Pair<BaseDAO, Entity> pair = autoDelete.pop();
+                if( pair.getSecond() instanceof IdEntity )
+                    pair.getFirst().remove(((IdEntity) pair.getSecond()).getId());
+                else
+                    pair.getFirst().remove(pair.getSecond());
+            }
+        } catch (Exception e){
+            fail("Entity removal failed. Detail: "+e.getMessage());
         }
     }
 }

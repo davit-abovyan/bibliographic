@@ -31,11 +31,7 @@ public class StatisticsImplTest extends BaseIntegrationTest {
 
     @After
     public void tearDown(){
-        try{
-            doAutoDelete();
-        } catch (Exception e){
-            fail("Entity removal failed. Detail: "+e.getMessage());
-        }
+        doAutoDelete();
     }
 
     @Test
